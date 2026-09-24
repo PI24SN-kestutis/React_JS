@@ -1,0 +1,50 @@
+:root {
+    --pagrindinis-sriftas: Agency FB;
+}
+
+body {
+    font-family: var(--pagrindinis-sriftas);
+    background-color: #f0f0f0;
+    color: #222222;
+    margin: 0;
+}
+
+header {
+    background-color: #333333;
+    color: white;
+    padding: 20px;
+}
+
+nav ul {
+    display: flex;       /* Sudeda nuorodas į vieną eilutę */
+    gap: 15px;           /* Tarpas tarp nuorodų */
+    list-style: none;    /* Pašalina taškus */
+    padding: 0;
+    margin-top: 10px;
+}
+
+nav a {
+    color: #4da6ff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+footer {
+    background-color: #333333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
