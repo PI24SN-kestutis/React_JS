@@ -16,7 +16,7 @@ function App() {
   };
 
   return (
-    <div style={{ maxWidth: '700px', margin: '20px auto', fontFamily: 'Arial, sans-serif' }}>
+    <div style={{ maxWidth: '700px', margin: '20px auto', fontFamily: 'Arial, sans-serif', lineHeight: 1.3}}>
       <h1>1 Lygis: App komponentas (Duomenų šaltinis)</h1>
       <p>Čia saugoma <code>user</code> būsena ir <code>toggleRole</code> funkcija.</p>
 
