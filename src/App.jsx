@@ -1,53 +1,39 @@
-import ProductCard from './components/ProductCard';
-import Wrapper from './components/Wrapper';
+import ProductOrder from './components/ProductOrder';
+import Calculator from './components/Calculator';
 
 function App() {
-  // 2 Užduotis: Naudotojo informacijos objektas
-  const user = {
-    name: 'Vardenis Pavardenis',
-    age: 21,
-    email: 'vardenis.pavardenis@viko.lt',
-    country: 'Lietuva'
-  };
-
   return (
-    <div style={{ fontSize: '32px', lineHeight: 1.25, margin: '20px 0' }}>
-      <h1>React komponentai ir JSX sintaksė</h1>
+    <div style={{ maxWidth: '800px', margin: '20px auto', padding: '0 20px', fontFamily: 'Arial, sans-serif' }}>
+      <h1>React būsena ir parametrai</h1>
 
       {/* ========================================================= */}
-      {/* 1 UŽDUOTIS: Prekės kortelė (App -> ProductCard)           */}
+      {/* 1 UŽDUOTIS: Prekės kiekis ir bendra kaina                */}
+      {/* Komponentų ryšys: App -> ProductOrder                     */}
       {/* ========================================================= */}
       <section style={{ marginBottom: '40px' }}>
-        <h2>1 Užduotis: Prekės kortelės (ProductCard)</h2>
+        <h2>1 Užduotis: Prekės užsakymas (ProductOrder)</h2>
+        <p style={{ marginBottom: '16px', color: '#555' }}>
+          Kiekvienas komponentas turi nepriklausomą būseną, valdomą mygtukais „+“, „−“ ir „Atkurti kiekį“.
+        </p>
 
         {/* Pirma prekė */}
-        <ProductCard
-          title="Belaidės ausinės 'SoundPro'"
-          price={79.99}
-          description="Aukštos kokybės belaidės ausinės su aktyviu triukšmo slopinimu."
-        />
+        <ProductOrder name="Kava 'Arabica Supreme'" price={7.5} />
 
-        {/* Antra prekė (pakartotinis ProductCard panaudojimas) */}
-        <ProductCard
-          title="Mechaninė klaviatūra 'KeyMaster'"
-          price={119.50}
-          description="RGB apšvietimas, tylūs mechaniniai jungikliai ir patogus riešo palaikymas."
-        />
+        {/* Antra prekė (nepriklausoma būsena) */}
+        <ProductOrder name="Ekologiška arbata 'Matcha'" price={12.99} />
       </section>
 
       {/* ========================================================= */}
-      {/* 2 UŽDUOTIS: Prop Drilling demonstracija                  */}
-      {/* Grandinė: App -> Wrapper -> ProfileContainer -> ProfileDetails */}
+      {/* 2 UŽDUOTIS: Skaičiuotuvas su dviem įvestimis             */}
+      {/* Komponentų ryšys: App -> Calculator -> CalculationResult  */}
       {/* ========================================================= */}
-      <section>
-        <h2>2 Užduotis: Naudotojo profilis (Prop Drilling)</h2>
-        <p>
-          Duomenys perduodami per grandinę:{' '}
-          <code>App → Wrapper → ProfileContainer → ProfileDetails</code>
+      <section style={{ marginBottom: '40px' }}>
+        <h2>2 Užduotis: Skaičiuotuvas (Calculator)</h2>
+        <p style={{ marginBottom: '16px', color: '#555' }}>
+          Valdomi įvesties laukai, veiksmų pasirinkimas, dalybos iš nulio apsauga ir atskiras rezultato komponentas.
         </p>
 
-        {/* Perduodame 'user' tik į Wrapper */}
-        <Wrapper user={user} />
+        <Calculator />
       </section>
     </div>
   );
