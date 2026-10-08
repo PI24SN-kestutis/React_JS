@@ -1,53 +1,53 @@
-import ControlledLogin from './components/ControlledLogin';
-import UncontrolledLogin from './components/UncontrolledLogin';
+import { useState } from 'react';
+import TitleCounter from './components/TitleCounter';
 
 function App() {
+  // Sąlyginiam komponento prijungimui / pašalinimui (mount / unmount)
+  const [showCounter, setShowCounter] = useState(true);
+
   return (
-    <div style={{ maxWidth: '950px', margin: '30px auto', fontFamily: 'Arial, sans-serif', padding: '0 16px' }}>
-      <header style={{ textAlign: 'center', marginBottom: '30px' }}>
-        <h1 style={{ marginBottom: '8px' , lineHeight: '1.2'}}>Formų palyginimas: Controlled vs Uncontrolled</h1>
-        <p style={{ color: '#555', margin: 0 }}>
-          Atidarykite naršyklės konsolę (<strong>F12 &rarr; Console</strong>) ir stebėkite atvaizdavimo (render) pranešimus rašydami tekstą.
-        </p>
-      </header>
+    <div style={{ maxWidth: '600px', margin: '40px auto', fontFamily: 'Arial, sans-serif', textAlign: 'center', padding: '0 16px' }}>
+      <h1>React <code>useEffect</code> &amp; Hooks užduotis</h1>
+      <p style={{ color: '#555', marginBottom: '24px' }}>
+        Naršyklės kortelės pavadinimo (<code>document.title</code>) sinchronizavimas ir efekto valymas (cleanup).
+      </p>
 
-      {/* Abu komponentai atvaizduojami greta palyginimui */}
-      <div style={{ display: 'flex', gap: '24px', justifyContent: 'center', flexWrap: 'wrap' }}>
-        <ControlledLogin />
-        <UncontrolledLogin />
-      </div>
-
-      {/* Palyginimo suvestinė */}
-      <div
+      {/* Mygtukas komponento prijungimui / pašalinimui */}
+      <button
+        onClick={() => setShowCounter((prev) => !prev)}
         style={{
-          marginTop: '36px',
-          padding: '20px',
-          backgroundColor: '#f8f9fa',
-          borderRadius: '8px',
-          border: '1px solid #e9ecef',
-          lineHeight: '1.6'
+          padding: '10px 20px',
+          fontSize: '15px',
+          backgroundColor: showCounter ? '#dc3545' : '#28a745',
+          color: '#fff',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+          marginBottom: '20px'
         }}
       >
-        <h3 style={{ marginTop: 0 }}>Palyginimo apibendrinimas:</h3>
-        <ul style={{ margin: 0, paddingLeft: '20px' }}>
-          <li>
-            <strong>Rašant tekstą:</strong>
-            <br />
-            &bull; <em>Controlled:</em> su kiekviena raide kviečiamas <code>setState</code>, todėl komponentas persirenderina (konsolėje kartojasi <code>[ControlledLogin] Render</code>).
-            <br />
-            &bull; <em>Uncontrolled:</em> rašant tekstą komponentas <strong>nepersi-renderina</strong>, nes tekstą saugo pats DOM elementas (konsolė lieka rami).
-          </li>
-          <li style={{ marginTop: '8px' }}>
-            <strong>Paspaudus „Rodyti / Slėpti slaptažodį“:</strong>
-            <br />
-            Abu komponentai persirenderina, nes keičiasi matomumo būsena (<code>showPassword</code>).
-          </li>
-          <li style={{ marginTop: '8px' }}>
-            <strong>Pateikus formą (Submit):</strong>
-            <br />
-            Abu komponentai atlieka validaciją ir atvaizduoja klaidą arba sėkmės pranešimą.
-          </li>
-        </ul>
+        {showCounter ? 'Pašalinti komponentą (Unmount)' : 'Prijungti komponentą (Mount)'}
+      </button>
+
+      {/* Sąlyginis TitleCounter atvaizdavimas */}
+      {showCounter ? (
+        <TitleCounter />
+      ) : (
+        <div style={{ padding: '20px', backgroundColor: '#f8f9fa', borderRadius: '8px', border: '1px dashed #ccc', color: '#666' }}>
+          Komponentas pašalintas iš DOM. Naršyklės kortelės pavadinimas atkurtas į pradinį!
+        </div>
+      )}
+
+      {/* Instrukcija / pasitikrinimas */}
+      <div style={{ marginTop: '30px', textAlign: 'left', backgroundColor: '#f8f9fa', padding: '16px', borderRadius: '8px', fontSize: '14px', lineHeight: '1.6' }}>
+        <strong>Pasitikrinimas:</strong>
+        <ol style={{ margin: '8px 0 0', paddingLeft: '20px' }}>
+          <li>Atidarykite naršyklės konsolę (<strong>F12 &rarr; Console</strong>).</li>
+          <li>Kortelės pavadinime matoma <code>Skaitliukas: 0</code>.</li>
+          <li>Paspaudus 3 kartus „Didinti“ &rarr; kortelėje rodoma <code>Skaitliukas: 3</code>.</li>
+          <li>Paspaudus raudoną mygtuką <em>„Pašalinti komponentą (Unmount)“</em> &rarr; suveikia <strong>cleanup</strong> funkcija ir kortelės pavadinimas grįžta į pradinį (<code>first_viko</code>).</li>
+        </ol>
       </div>
     </div>
   );
